@@ -35,8 +35,8 @@ export default function Navbar() {
             Digital Essence
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             <NavLink href="#about">About</NavLink>
             <NavLink href="#team">Team</NavLink>
             <NavLink href="#services">Services</NavLink>

@@ -124,6 +124,41 @@ const services = [
       },
     ],
   },
+  {
+    id: "ai-development",
+    title: "Full Stack Agentic AI Development",
+    icon: <Code className="h-8 w-8 text-blue-400" />,
+    shortDesc: "Full Stack Agentic AI applications, web apps, and intelligent chatbots.",
+    fullDesc:
+      "We develop cutting-edge Full Stack Agentic AI applications, web applications, and intelligent chatbots that transform how businesses interact with technology. Our AI solutions are designed to automate processes, enhance user experiences, and provide intelligent insights for your business.",
+    packages: [
+      {
+        name: "AI Chatbot Solution",
+        features: ["Custom AI Chatbot", "Natural Language Processing", "Integration APIs", "Analytics Dashboard"],
+      },
+      {
+        name: "Full Stack AI Web App",
+        features: [
+          "Complete AI-Powered Web Application",
+          "Advanced AI Algorithms",
+          "Real-time Processing",
+          "User Authentication",
+          "Database Integration",
+        ],
+      },
+      {
+        name: "Enterprise AI Solution",
+        features: [
+          "Custom Agentic AI System",
+          "Advanced Machine Learning",
+          "Predictive Analytics",
+          "API Integration",
+          "Scalable Infrastructure",
+          "Ongoing AI Model Training",
+        ],
+      },
+    ],
+  },
 ]
 
 export default function Services() {
