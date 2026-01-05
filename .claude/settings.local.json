@@ -1,7 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add .)"
+      "Bash(git add .)",
+      "Bash(dir /s)",
+      "Bash(dir)",
+      "Bash(cmd /c \"dir /s\")",
+      "Bash(npm install)",
+      "Bash(npm install --legacy-peer-deps)",
+      "Bash(npx next dev)",
+      "Bash(npm install next@15.1.0 react@19 react-dom@19)",
+      "Bash(git init)",
+      "Bash(git add .)",
+      "Bash(git commit -m \"Initial commit: Digital Essence website\")",
+      "mcp__github__create_repository",
+      "Bash(curl -X DELETE -H \"Authorization: token $GITHUB_TOKEN\" -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/repos/Huzaifa-Chhipa/Digital-Essence-website-main)"
     ]
   }
 }
