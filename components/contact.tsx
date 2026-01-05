@@ -1,13 +1,17 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import Link from "next/link"
-import { Smartphone, Linkedin, Facebook, Instagram } from "lucide-react"
+import { Smartphone, Linkedin, Facebook, Instagram, MessageCircle, X, Send } from "lucide-react"
 
 export default function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -60,6 +64,22 @@ export default function Contact() {
       hoverColor: "hover:from-purple-700 hover:via-pink-600 hover:to-orange-500",
     },
   ]
+
+  const handleSendMessage = () => {
+    // Prepare the message to send to WhatsApp
+    const whatsappNumber = "923232141426"
+    const fullMessage = `*New Message from Website*\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    const encodedMessage = encodeURIComponent(fullMessage)
+
+    // Open WhatsApp with the pre-filled message
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank')
+
+    // Reset form and close dialog
+    setName("")
+    setEmail("")
+    setMessage("")
+    setIsDialogOpen(false)
+  }
 
   return (
     <section id="contact" className="py-20 md:py-32 bg-gray-900/50">
@@ -114,7 +134,77 @@ export default function Contact() {
               </p>
             </div>
           </motion.div>
+
+          {/* Message Dialog Button */}
+          <motion.div variants={itemVariants} className="mt-8 text-center">
+            <button
+              onClick={() => setIsDialogOpen(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-300"
+            >
+              <MessageCircle size={20} />
+              Send us a Message
+            </button>
+          </motion.div>
         </motion.div>
+
+        {/* Message Dialog */}
+        {isDialogOpen && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-gray-800 rounded-xl max-w-md w-full p-6 relative">
+              <button
+                onClick={() => setIsDialogOpen(false)}
+                className="absolute top-4 right-4 text-white hover:text-gray-300"
+              >
+                <X size={24} />
+              </button>
+
+              <h3 className="text-xl font-bold mb-4 text-white">Send us a Message</h3>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-white mb-1">Name</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Your name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-white mb-1">Email</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Your email"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-white mb-1">Message</label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows={4}
+                    className="w-full px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Your message"
+                  ></textarea>
+                </div>
+
+                <button
+                  onClick={handleSendMessage}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-300"
+                >
+                  <Send size={20} />
+                  Send to WhatsApp
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
