@@ -16,7 +16,8 @@
       "Bash(curl -X DELETE -H \"Authorization: token $GITHUB_TOKEN\" -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/repos/Huzaifa-Chhipa/Digital-Essence-website-main)",
       "Bash(dir app /s)",
       "Bash(git commit -m \"Add Full Stack Agentic AI service and center header navigation\")",
-      "Bash(git commit -m \"Add message dialog box to contact section with WhatsApp integration\")"
+      "Bash(git commit -m \"Add message dialog box to contact section with WhatsApp integration\")",
+      "Bash(git commit -m \"Enhance chat widget with service-related questions and answers\")"
     ]
   }
 }

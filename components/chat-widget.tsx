@@ -29,7 +29,7 @@ export default function ChatWidget() {
     if (isOpen && messages.length === 0 && isClient) {
       const initialMessage: Message = {
         id: 1,
-        text: "Hi there! 👋 How can we help you today?\n\nYou can ask me about our services:\n1. Web Development\n2. Graphic Design\n3. Branding Design\n4. Business Strategy\n5. Full Stack Agentic AI Development\n\nOr just type your question!",
+        text: "Hi there! 👋 How can we help you today?\n\nYou can ask me about our services:\n\n1. Web Development\n2. Graphic Design\n3. Branding Design\n4. Business Strategy\n5. Full Stack Agentic AI Development\n\nOr just type your question!",
         sender: "bot",
         time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       }
