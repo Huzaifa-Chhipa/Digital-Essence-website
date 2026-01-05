@@ -19,7 +19,7 @@ const teamMembers = [
   },
   {
     name: "Huzaifa Chhipa",
-    role: "Graphic Designer & Web Developer",
+    role: "Graphic Designer & Web Developer & FULL stack agentic AI developer",
     bio: "Transforming ideas into stunning visuals and seamless digital experiences.",
     image: "https://i.imgur.com/a2D7PpG.jpeg",
     social: {
