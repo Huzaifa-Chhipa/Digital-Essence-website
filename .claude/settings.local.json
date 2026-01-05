@@ -13,7 +13,8 @@
       "Bash(git add .)",
       "Bash(git commit -m \"Initial commit: Digital Essence website\")",
       "mcp__github__create_repository",
-      "Bash(curl -X DELETE -H \"Authorization: token $GITHUB_TOKEN\" -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/repos/Huzaifa-Chhipa/Digital-Essence-website-main)"
+      "Bash(curl -X DELETE -H \"Authorization: token $GITHUB_TOKEN\" -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/repos/Huzaifa-Chhipa/Digital-Essence-website-main)",
+      "Bash(dir app /s)"
     ]
   }
 }
