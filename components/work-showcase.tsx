@@ -30,12 +30,6 @@ const workProjects = [
     category: "AI Development",
   },
   {
-    title: "Corporate Website",
-    description: "Professional website for corporate client with CMS integration.",
-    image: "/placeholder.svg?height=300&width=400",
-    category: "Web Development",
-  },
-  {
     title: "Mobile App Design",
     description: "UI/UX design for mobile application with user testing.",
     image: "/placeholder.svg?height=300&width=400",
