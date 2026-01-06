@@ -6,6 +6,7 @@ import CustomOrders from "@/components/custom-orders"
 import Contact from "@/components/contact"
 import ChatWidget from "@/components/chat-widget"
 import WhatsappWidget from "@/components/whatsapp-widget"
+import NeonMouseTrail from "@/components/neon-mouse-trail"
 
 export default function Home() {
   return (
@@ -42,6 +43,7 @@ export default function Home() {
       <CustomOrders />
       <Contact />
       <ChatWidget />
+      <NeonMouseTrail />
       <WhatsappWidget />
     </main>
   )
