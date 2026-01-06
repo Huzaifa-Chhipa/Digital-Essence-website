@@ -336,7 +336,7 @@ export default function Services() {
 
                   <div className="text-center">
                     <button
-                      onClick={() => triggerShutterAnimation("#get-in-touch")}
+                      onClick={() => triggerShutterAnimation("#contact")}
                       className="btn-primary inline-flex items-center"
                       disabled={shutterAnimating}
                     >
