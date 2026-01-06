@@ -337,7 +337,12 @@ export default function Services() {
 
                   <div className="text-center">
                     <button
-                      onClick={() => triggerShutterAnimation("#contact")}
+                      onClick={() => {
+                        setSelectedService(null); // Close the modal first
+                        setTimeout(() => {
+                          triggerShutterAnimation("#contact");
+                        }, 50); // Small delay to ensure modal starts closing
+                      }}
                       className="btn-primary inline-flex items-center"
                       disabled={shutterAnimating}
                     >
