@@ -3,6 +3,7 @@
 import { useState, useRef } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Code, Palette, Briefcase, BarChart, ArrowRight, X } from "lucide-react"
 
 const services = [
@@ -163,8 +164,59 @@ const services = [
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<string | null>(null)
+  const [shutterActive, setShutterActive] = useState(false)
+  const [shutterAnimating, setShutterAnimating] = useState(false)
+  const [targetUrl, setTargetUrl] = useState("")
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const router = useRouter()
+
+  const triggerShutterAnimation = (url: string) => {
+    if (shutterAnimating) return;
+
+    setTargetUrl(url);
+    setShutterAnimating(true);
+    setShutterActive(true);
+
+    // Check if this is a service-specific URL
+    const isServiceUrl = url.startsWith('#service-');
+    let serviceId = null;
+
+    if (isServiceUrl) {
+      serviceId = url.replace('#service-', '');
+    }
+
+    // After shutters close, handle the navigation or scrolling
+    setTimeout(() => {
+      if (url.startsWith('#')) {
+        // For anchor links, scroll to the element
+        const element = document.querySelector(url);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // If it's a service URL, open the modal after animation
+        if (isServiceUrl && serviceId) {
+          setTimeout(() => {
+            setSelectedService(serviceId);
+          }, 100); // Small delay to ensure animation is processed
+        }
+      } else {
+        // For regular navigation, use router
+        router.push(url);
+      }
+
+      // Start revealing the shutters after a delay to show they are fully closed
+      setTimeout(() => {
+        setShutterActive(false);
+      }, 300);
+
+      // Reset animation state after the reveal animation completes
+      setTimeout(() => {
+        setShutterAnimating(false);
+      }, 1100); // Wait for the full animation sequence to complete
+    }, 600); // Wait for shutters to fully close
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -191,6 +243,10 @@ export default function Services() {
 
   return (
     <section id="services" className="py-20 md:py-32">
+      {/* Service anchor points */}
+      {services.map((service) => (
+        <div key={`anchor-${service.id}`} id={`service-${service.id}`} className="anchor-point" style={{ position: 'relative', top: '-100px', visibility: 'hidden' }}></div>
+      ))}
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="section-title">Our Services</h2>
@@ -211,7 +267,7 @@ export default function Services() {
               key={service.id}
               variants={itemVariants}
               className="card cursor-pointer group"
-              onClick={() => setSelectedService(service.id)}
+              onClick={() => triggerShutterAnimation(`#service-${service.id}`)}
             >
               <div className="mb-4">{service.icon}</div>
               <h3 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors duration-300">
@@ -279,13 +335,13 @@ export default function Services() {
                   </div>
 
                   <div className="text-center">
-                    <Link
-                      href="#get-in-touch"
+                    <button
+                      onClick={() => triggerShutterAnimation("#get-in-touch")}
                       className="btn-primary inline-flex items-center"
-                      onClick={() => setSelectedService(null)}
+                      disabled={shutterAnimating}
                     >
                       Get Started <ArrowRight size={16} className="ml-2" />
-                    </Link>
+                    </button>
                   </div>
                 </div>
               )}
@@ -293,6 +349,14 @@ export default function Services() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Shutter Overlay */}
+      {shutterAnimating && (
+        <div className={`shutter-overlay ${shutterActive ? 'active' : 'revealing'}`}>
+          <div className="shutter-top"></div>
+          <div className="shutter-bottom"></div>
+        </div>
+      )}
     </section>
   )
 }
