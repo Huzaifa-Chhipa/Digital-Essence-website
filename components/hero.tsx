@@ -2,11 +2,43 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { ArrowRight } from "lucide-react"
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isClient, setIsClient] = useState(false)
+  const [shutterActive, setShutterActive] = useState(false)
+  const [shutterAnimating, setShutterAnimating] = useState(false)
+  const [targetUrl, setTargetUrl] = useState("")
+  const router = useRouter()
+
+  const triggerShutterAnimation = (url: string) => {
+    if (shutterAnimating) return;
+
+    setTargetUrl(url);
+    setShutterAnimating(true);
+    setShutterActive(true);
+
+    // After shutters close, handle the navigation or scrolling
+    setTimeout(() => {
+      if (url.startsWith('#')) {
+        // For anchor links, scroll to the element
+        const element = document.querySelector(url);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // For regular navigation, use router
+        router.push(url);
+      }
+
+      // Start revealing the shutters after a delay
+      setTimeout(() => {
+        setShutterActive(false);
+      }, 300);
+    }, 600); // Duration of shutter closing animation
+  };
 
   useEffect(() => {
     setIsClient(true)
@@ -119,12 +151,20 @@ export default function Hero() {
               We transform ideas into exceptional digital solutions that elevate your brand and drive business growth.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="#services" className="btn-primary flex items-center gap-2">
+              <button
+                onClick={() => triggerShutterAnimation("#services")}
+                className="btn-primary flex items-center gap-2"
+                disabled={shutterAnimating}
+              >
                 Explore Our Services <ArrowRight size={16} />
-              </Link>
-              <Link href="#get-in-touch" className="btn-secondary">
+              </button>
+              <button
+                onClick={() => triggerShutterAnimation("#get-in-touch")}
+                className="btn-secondary"
+                disabled={shutterAnimating}
+              >
                 Get in Touch
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -161,12 +201,20 @@ export default function Hero() {
             We transform ideas into exceptional digital solutions that elevate your brand and drive business growth.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="#services" className="btn-primary flex items-center gap-2">
+            <button
+              onClick={() => triggerShutterAnimation("#services")}
+              className="btn-primary flex items-center gap-2"
+              disabled={shutterAnimating}
+            >
               Explore Our Services <ArrowRight size={16} />
-            </Link>
-            <Link href="#get-in-touch" className="btn-secondary">
+            </button>
+            <button
+              onClick={() => triggerShutterAnimation("#get-in-touch")}
+              className="btn-secondary"
+              disabled={shutterAnimating}
+            >
               Get in Touch
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -187,6 +235,14 @@ export default function Hero() {
           </svg>
         </Link>
       </div>
+
+      {/* Shutter Overlay */}
+      {shutterAnimating && (
+        <div className={`shutter-overlay ${shutterActive ? 'active' : 'revealing'}`}>
+          <div className="shutter-top"></div>
+          <div className="shutter-bottom"></div>
+        </div>
+      )}
     </section>
   )
 }

@@ -169,3 +169,54 @@ body {
   animation: slide 20s linear infinite;
 }
 
+/* Shutter animation styles */
+.shutter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.shutter-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, #111827 0%, #111827 100%);
+  transform: translateY(-100%);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shutter-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, #111827 0%, #111827 100%);
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shutter-overlay.active .shutter-top {
+  transform: translateY(0);
+}
+
+.shutter-overlay.active .shutter-bottom {
+  transform: translateY(0);
+}
+
+.shutter-overlay.revealing .shutter-top {
+  transform: translateY(-100%);
+  transition: transform 0.6s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shutter-overlay.revealing .shutter-bottom {
+  transform: translateY(100%);
+  transition: transform 0.6s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
