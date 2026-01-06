@@ -99,7 +99,7 @@ export default function CustomOrders() {
           <motion.div variants={itemVariants} className="mt-12">
             <div className="card">
               <h3 className="text-xl font-bold mb-4">Types of Custom Orders We Accept:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <div className="bg-gray-800/50 rounded-lg p-4">
                   <h4 className="font-bold text-blue-400 mb-2">Web Development</h4>
                   <ul className="space-y-2 text-white/70">
@@ -125,6 +125,15 @@ export default function CustomOrders() {
                     <li>• Content creation</li>
                     <li>• SEO strategies</li>
                     <li>• Analytics & reporting</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-800/50 rounded-lg p-4">
+                  <h4 className="font-bold text-blue-400 mb-2">Full Stack AI Development</h4>
+                  <ul className="space-y-2 text-white/70">
+                    <li>• AI-powered web applications</li>
+                    <li>• Machine learning integration</li>
+                    <li>• Agentic AI systems</li>
+                    <li>• Intelligent automation solutions</li>
                   </ul>
                 </div>
               </div>
