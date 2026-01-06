@@ -29,18 +29,23 @@ export default function Hero() {
           element.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Start revealing the shutters after a delay
+        // Start revealing the shutters after a delay to show they are fully closed
         setTimeout(() => {
           setShutterActive(false);
-
-          // Reset animation state after the reveal animation completes
-          setTimeout(() => {
-            setShutterAnimating(false);
-          }, 800); // Match the CSS transition duration
         }, 300);
+
+        // Reset animation state after the reveal animation completes
+        setTimeout(() => {
+          setShutterAnimating(false);
+        }, 1100); // 600ms (close) + 300ms (stay closed) + 800ms (open) - some buffer
       } else {
         // For regular navigation, use router
         router.push(url);
+
+        // Reset animation state after a delay to allow for navigation
+        setTimeout(() => {
+          setShutterAnimating(false);
+        }, 1100);
       }
     }, 600); // Duration of shutter closing animation
   };
