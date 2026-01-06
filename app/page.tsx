@@ -1,7 +1,7 @@
 import Hero from "@/components/hero"
 import About from "@/components/about"
-import Team from "@/components/team"
 import Services from "@/components/services"
+import WorkShowcase from "@/components/work-showcase"
 import CustomOrders from "@/components/custom-orders"
 import Contact from "@/components/contact"
 import ChatWidget from "@/components/chat-widget"
@@ -37,7 +37,7 @@ export default function Home() {
 
       <Hero />
       <About />
-      <Team />
+      <WorkShowcase />
       <Services />
       <CustomOrders />
       <Contact />

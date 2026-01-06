@@ -17,7 +17,8 @@
       "Bash(dir app /s)",
       "Bash(git commit -m \"Add Full Stack Agentic AI service and center header navigation\")",
       "Bash(git commit -m \"Add message dialog box to contact section with WhatsApp integration\")",
-      "Bash(git commit -m \"Enhance chat widget with service-related questions and answers\")"
+      "Bash(git commit -m \"Enhance chat widget with service-related questions and answers\")",
+      "Bash(git add app/api/chat/route.ts components/chat-widget.tsx)"
     ]
   }
 }

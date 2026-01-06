@@ -38,7 +38,7 @@ export default function Navbar() {
           {/* Desktop Navigation - Centered */}
           <nav className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             <NavLink href="#about">About</NavLink>
-            <NavLink href="#team">Team</NavLink>
+            <NavLink href="#work">Our Work</NavLink>
             <NavLink href="#services">Services</NavLink>
             <NavLink href="#custom-orders">Custom Orders</NavLink>
             <NavLink href="#contact">Contact</NavLink>
@@ -61,8 +61,8 @@ export default function Navbar() {
             <MobileNavLink href="#about" onClick={() => setIsOpen(false)}>
               About
             </MobileNavLink>
-            <MobileNavLink href="#team" onClick={() => setIsOpen(false)}>
-              Team
+            <MobileNavLink href="#work" onClick={() => setIsOpen(false)}>
+              Our Work
             </MobileNavLink>
             <MobileNavLink href="#services" onClick={() => setIsOpen(false)}>
               Services
