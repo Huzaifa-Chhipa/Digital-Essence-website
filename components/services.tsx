@@ -188,28 +188,29 @@ export default function Services() {
 
     // After shutters close, handle the navigation or scrolling
     setTimeout(() => {
-      if (url.startsWith('#')) {
-        // For anchor links, scroll to the element
-        const element = document.querySelector(url);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+      // Start revealing the shutters first
+      setShutterActive(false);
 
-        // If it's a service URL, open the modal after animation
-        if (isServiceUrl && serviceId) {
-          setTimeout(() => {
-            setSelectedService(serviceId);
-          }, 100); // Small delay to ensure animation is processed
-        }
-      } else {
-        // For regular navigation, use router
-        router.push(url);
-      }
-
-      // Start revealing the shutters after a delay to show they are fully closed
+      // Then handle the navigation or scrolling after a brief delay to allow shutter opening to start
       setTimeout(() => {
-        setShutterActive(false);
-      }, 300);
+        if (url.startsWith('#')) {
+          // For anchor links, scroll to the element
+          const element = document.querySelector(url);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+
+          // If it's a service URL, open the modal after animation
+          if (isServiceUrl && serviceId) {
+            setTimeout(() => {
+              setSelectedService(serviceId);
+            }, 100); // Small delay to ensure animation is processed
+          }
+        } else {
+          // For regular navigation, use router
+          router.push(url);
+        }
+      }, 100); // Small delay to allow shutter opening to begin
 
       // Reset animation state after the reveal animation completes
       setTimeout(() => {
