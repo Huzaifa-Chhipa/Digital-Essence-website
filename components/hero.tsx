@@ -113,7 +113,7 @@ export default function Hero() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Crafting <span className="gradient-text">Digital Experiences</span> That Inspire
+              Crafting <span className="neon-text">Digital Experiences</span> That Inspire
             </h1>
             <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto">
               We transform ideas into exceptional digital solutions that elevate your brand and drive business growth.
@@ -155,7 +155,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Crafting <span className="gradient-text">Digital Experiences</span> That Inspire
+            Crafting <span className="neon-text">Digital Experiences</span> That Inspire
           </h1>
           <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto">
             We transform ideas into exceptional digital solutions that elevate your brand and drive business growth.
